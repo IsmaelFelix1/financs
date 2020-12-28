@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,10 +8,12 @@ import {
   Image,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import firebase from '../../services/firebaseConnection';
-import 'react-native-gesture-handler';
+import firebase from "../../services/firebaseConnection";
+import "react-native-gesture-handler";
 
 export default function login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
       <View style={styles.areaLogo}>
@@ -23,12 +25,26 @@ export default function login() {
       <View style={styles.areaLogin}>
         <View style={styles.dentroAreaLogin}>
           <Text style={styles.textoLogin}>Login</Text>
-          <TextInput placeholder="Email" style={styles.textInputEmail} />
+          <TextInput
+            placeholder="Email"
+            style={styles.textInputEmail}
+            autoCorrect={false}
+            autoCapitalize="none"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
           <View style={styles.iconInput}>
             <Icon name="mail-outline" color="rgba(0,0,0,0.6)" size={25} />
           </View>
 
-          <TextInput placeholder="Senha" style={styles.textInputPassWord} />
+          <TextInput
+            placeholder="Senha"
+            style={styles.textInputPassWord}
+            autoCorrect={false}
+            autoCapitalize="none"
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
           <View style={styles.iconInput}>
             <Icon name="key-outline" color="rgba(0,0,0,0.6)" size={25} />
           </View>
@@ -45,7 +61,9 @@ export default function login() {
       <View style={styles.areaFooter}>
         <Text style={styles.textFooter}>Você não tem conta?</Text>
         <TouchableOpacity>
-          <Text style={[styles.textFooter, styles.textFooterCadastro]}>Cadastra-se</Text>
+          <Text style={[styles.textFooter, styles.textFooterCadastro]}>
+            Cadastra-se
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -130,8 +148,8 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   textFooterCadastro: {
-      color: '#FFF',
-      fontWeight: 'bold',
-      marginTop: 10
-  }
+    color: "#FFF",
+    fontWeight: "bold",
+    marginTop: 10,
+  },
 });
