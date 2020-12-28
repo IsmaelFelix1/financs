@@ -6,16 +6,21 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  KeyboardAvoidingView,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import firebase from "../../services/firebaseConnection";
 import "react-native-gesture-handler";
+import {useNavigation} from '@react-navigation/native';
+
 
 export default function login() {
+  const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
+        
       <View style={styles.areaLogo}>
         <Image
           source={require("../../assets/img/money.png")}
@@ -60,7 +65,7 @@ export default function login() {
       </View>
       <View style={styles.areaFooter}>
         <Text style={styles.textFooter}>Você não tem conta?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('SingUp')}> 
           <Text style={[styles.textFooter, styles.textFooterCadastro]}>
             Cadastra-se
           </Text>
