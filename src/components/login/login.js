@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import firebase from '../../services/firebaseConnection';
+import 'react-native-gesture-handler';
 
 export default function login() {
   return (
