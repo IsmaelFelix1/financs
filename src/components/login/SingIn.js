@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -12,12 +12,18 @@ import Icon from "react-native-vector-icons/Ionicons";
 import firebase from "../../services/firebaseConnection";
 import "react-native-gesture-handler";
 import {useNavigation} from '@react-navigation/native';
-
+import { AuthContext } from '../../contexts/auth';
 
 export default function login() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { user } = useContext(AuthContext);
+
+  function log(){
+    console.log(user.name)
+  }
+ 
   return (
     <View style={styles.container}>
         
@@ -58,7 +64,7 @@ export default function login() {
           <Text style={styles.textEsqueceu}>Esqueceu Senha?</Text>
         </TouchableOpacity>
         <View style={styles.areaBtn}>
-          <TouchableOpacity style={styles.btn}>
+          <TouchableOpacity style={styles.btn} onPress={log}>
             <Text style={styles.textBtn}>Entrar</Text>
           </TouchableOpacity>
         </View>
